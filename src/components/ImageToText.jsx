@@ -68,7 +68,7 @@ const ImageToStructuredHTML = () => {
               },
               {
                 role: "user",
-                content: `OCR Text:\n\n${extractedText}\n\nInterpret this text and format it into a structured HTML table or sections.`,
+                content: `OCR Text:\n\n${extractedText}\n\nInterpret this text and format it into a structured HTML table or sections. Provide only the HTML without any explaining it. Only the HTML`,
               },
             ],
           }),
@@ -91,28 +91,30 @@ const ImageToStructuredHTML = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-4xl font-bold text-blue-600 mb-6">
+    <div className="flex flex-col items-center px-6 py-8 bg-gradient-to-b from-blue-50 via-white to-gray-100 min-h-screen text-gray-800">
+      <h1 className="text-4xl md:text-5xl font-extrabold text-blue-700 mb-8 text-center drop-shadow-md">
         Image to Structured HTML Converter
       </h1>
       <input
         type="file"
         accept="image/*"
         onChange={handleImageChange}
-        className="mb-6 px-4 py-2 border border-gray-300 rounded-lg bg-white shadow-sm"
+        className="mb-6 w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
       <button
         onClick={processImage}
-        className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-700"
+        className="bg-blue-600 text-white px-8 py-3 rounded-lg shadow-lg hover:bg-blue-700 active:scale-95 transition-transform"
       >
         Process Image
       </button>
       {progress > 0 && progress < 100 && (
-        <p className="text-gray-700 mt-4">Progress: {progress}%</p>
+        <p className="mt-4 text-lg text-gray-600 animate-pulse">
+          Progress: {progress}%
+        </p>
       )}
       {dynamicHTML && (
         <div
-          className="mt-6 bg-white p-4 rounded-lg shadow w-full max-w-4xl"
+          className="mt-8 bg-white p-6 rounded-xl shadow-lg w-full max-w-5xl border border-gray-200 overflow-auto"
           dangerouslySetInnerHTML={{ __html: dynamicHTML }}
         ></div>
       )}
