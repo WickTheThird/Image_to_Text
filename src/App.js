@@ -1,9 +1,10 @@
 import './App.css';
+import ChatWithImage from './components/ImageToText';
 
 function App() {
   return (
     <div>
-      <h1 className="underline">React App</h1>
+      <ChatWithImage />
     </div>
   );
 }
